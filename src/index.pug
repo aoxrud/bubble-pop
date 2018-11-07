@@ -1,0 +1,25 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Bubble Pop Game using CSS only
+    link(rel='stylesheet', href='index.css')
+  body
+
+    form#game
+      .gameboard
+        - var totalBubbles = 10;
+        - var n = 0;
+        while n < totalBubbles
+          input.checkbox(type='checkbox', id=n, class='input-'+n)
+          - n++
+
+        .complete
+          h1 Game Complete.
+          button.reset-button(type='reset') Try Again
+
+
+
+
+
+

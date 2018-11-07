@@ -1,0 +1,108 @@
+$total-bubbles: 10;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.gameboard {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(to right, rgba(205,235,142,1) 0%,rgba(165,201,86,1) 100%);
+}
+
+.complete {
+  height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.reset-button {
+  padding: 1rem;
+  font-size: 18px;
+  background: transparent;
+  border: none;
+  display: block;
+  text-align: center;
+}
+
+.checkbox {
+  position: absolute;
+  transition-timing-function: linear;
+  animation: floatUp 25s infinite;
+  bottom: -170px;
+
+  &::after {
+    content: "";
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    display: block;
+    background: linear-gradient(to bottom, rgba(254,255,255,1) 0%,rgba(221,241,249,1) 35%,rgba(160,216,239,1) 100%);
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+    z-index: 9;
+    left: -35px;
+    position: relative;
+    top: -15px;
+  }
+
+  &:checked {
+    display: none;
+  }
+}
+
+$i: 0;
+@for $i from 1 through $total-bubbles {
+  .checkbox:nth-child(#{$i}) {
+
+    $position: random(80) + 0%;
+    $size: random(120px) + 50px;
+    $delay: random(2s) + 0s;
+    $duration: random(30s) + 10s;
+
+    animation-delay: $delay;
+    animation-duration: $duration;
+    left: $position;
+
+    &::after {
+      width: $size;
+      height: $size;
+      border-radius: ($size / 2);
+    }
+  }
+}
+
+@mixin onGameComplete {
+  $i: 0;
+  $selector: '';
+  @for $i from $total-bubbles through 1 {
+    $selector: '.checkbox:nth-child(#{$i}):checked + #{$selector}';
+  }
+
+  #{$selector} .complete {
+    @content
+  }
+}
+
+@include onGameComplete {
+  display: flex;
+}
+
+@keyframes floatUp {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  100% {
+    -webkit-transform: translateY(-1200px) rotate(600deg);
+    transform: translateY(-1200px) rotate(600deg);
+  }
+}
+

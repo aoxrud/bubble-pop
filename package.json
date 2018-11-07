@@ -1,0 +1,29 @@
+{
+  "name": "bubble-pop",
+  "version": "1.0.0",
+  "description": "A simple bubble pop game without javascript, only css selectors.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aoxrud-ww/bubble-pop.git"
+  },
+  "author": "Alex Oxrud",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aoxrud-ww/bubble-pop/issues"
+  },
+  "homepage": "https://github.com/aoxrud-ww/bubble-pop#readme",
+  "devDependencies": {
+    "install": "^0.12.2",
+    "node-sass": "^4.10.0",
+    "npm": "^6.4.1",
+    "pug": "^2.0.3",
+    "pug-cli": "^1.0.0-alpha6",
+    "watch": "^1.0.2"
+  },
+  "scripts": {
+    "styles": "node-sass src/index.scss dist/index.css",
+    "template": "pug src/index.pug --pretty --out dist --name index.html",
+    "compile": "npm run styles && npm run template",
+    "watch": "watch 'npm run compile' src"
+  }
+}
