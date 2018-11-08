@@ -1,8 +1,7 @@
 # Bubble Pop Game
 A simple game written only in HTML and CSS, without Javascript.
 
-![](game-preview
-.gif)
+![](game-preview.gif)
 
 
 ### Try it out
@@ -34,6 +33,7 @@ Once the checkbox is checked, we trigger the `pop` animation on the `.bubble` el
 
 
 The alternative would be to combine the floating and popping animations on the same element. However, it turns out to be problematic because both animations operate using the `transform` property. The problem is that when the `transform` property is set, it resets the existing transformation. In our case, it would cause clicked bubbles to reset to the starting position before popping.
+
 
 ### Why did you use preprocessors?
 Even though this could be written in vanilla html and css, it has a lot of repeated code which would be a nightmare to manually maintain and debug.
