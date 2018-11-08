@@ -8,15 +8,19 @@ html(lang='en')
 
     form#game
       .gameboard
+        a.text.author(href="https://github.com/aoxrud-ww/bubble-pop") Github
         - var totalBubbles = 10;
+        .text.progress-text Bubbles Popped:
         - var n = 0;
         while n < totalBubbles
-          input.checkbox(type='checkbox', id=n, class='input-'+n)
+          input.checkbox(type='checkbox', id='checkbox-'+n)
+          label.label(for='checkbox-'+n, id='bubble-'+n)
+            .bubble
           - n++
 
         .complete
-          h1 Game Complete.
-          button.reset-button(type='reset') Try Again
+          h1.text Game Complete.
+          button.reset-button.text(type='reset') Play Again
 
 
 

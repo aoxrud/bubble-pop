@@ -4,6 +4,8 @@ $total-bubbles: 10;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 .gameboard {
@@ -12,7 +14,27 @@ $total-bubbles: 10;
   left: 0;
   bottom: 0;
   right: 0;
-  background: linear-gradient(to right, rgba(205,235,142,1) 0%,rgba(165,201,86,1) 100%);
+  background: linear-gradient(to right, rgba(135,224,253,1) 0%,rgba(83,203,241,1) 40%,rgba(5,171,224,1) 100%);
+}
+
+.text {
+  letter-spacing: 1px;
+  padding-top: 1rem;
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.8);
+}
+
+.author {
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  text-decoration: none;
+}
+
+.progress-text {
+  font-size: 12px;
+  padding-left: 1rem;
 }
 
 .complete {
@@ -21,6 +43,14 @@ $total-bubbles: 10;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.checkbox {
+  pointer-events: none;
+}
+
+#checkbox-0 {
+  margin-left: 1rem;
 }
 
 .reset-button {
@@ -32,45 +62,48 @@ $total-bubbles: 10;
   text-align: center;
 }
 
-.checkbox {
+.label {
   position: absolute;
   transition-timing-function: linear;
   animation: floatUp 25s infinite;
   bottom: -170px;
+  display: block;
+  z-index: 10;
 
-  &::after {
-    content: "";
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-    display: block;
-    background: linear-gradient(to bottom, rgba(254,255,255,1) 0%,rgba(221,241,249,1) 35%,rgba(160,216,239,1) 100%);
-    box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
-    z-index: 9;
-    left: -35px;
-    position: relative;
-    top: -15px;
-  }
+}
 
-  &:checked {
-    display: none;
-  }
+.bubble {
+  background: linear-gradient(to bottom, rgba(254,255,255,1) 0%,rgba(221,241,249,1) 35%,rgba(160,216,239,1) 100%);
+  box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+  z-index: 11;
+  opacity: 0.8;
 }
 
 $i: 0;
-@for $i from 1 through $total-bubbles {
-  .checkbox:nth-child(#{$i}) {
+@for $i from 0 through $total-bubbles {
 
+  #checkbox-#{$i} {
+    &:checked {
+      + #bubble-#{$i} {
+        pointer-events: none;
+        .bubble {
+          transition-timing-function: linear;
+          animation: pop 250ms forwards;
+        }
+      }
+    }
+  }
+
+  #bubble-#{$i} {
     $position: random(80) + 0%;
     $size: random(120px) + 50px;
     $delay: random(2s) + 0s;
     $duration: random(30s) + 10s;
-
     animation-delay: $delay;
     animation-duration: $duration;
     left: $position;
 
-    &::after {
+    .bubble {
       width: $size;
       height: $size;
       border-radius: ($size / 2);
@@ -81,8 +114,8 @@ $i: 0;
 @mixin onGameComplete {
   $i: 0;
   $selector: '';
-  @for $i from $total-bubbles through 1 {
-    $selector: '.checkbox:nth-child(#{$i}):checked + #{$selector}';
+  @for $i from ($total-bubbles - 1) through 0 {
+    $selector: '#checkbox-#{$i}:checked ~ #{$selector}';
   }
 
   #{$selector} .complete {
@@ -96,13 +129,19 @@ $i: 0;
 
 @keyframes floatUp {
   0% {
-    -webkit-transform: translateY(0);
     transform: translateY(0);
   }
 
   100% {
-    -webkit-transform: translateY(-1200px) rotate(600deg);
     transform: translateY(-1200px) rotate(600deg);
   }
 }
 
+@keyframes pop {
+  50%  {
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+  }
+}

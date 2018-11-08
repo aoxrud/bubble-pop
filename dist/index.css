@@ -1,7 +1,9 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
 .gameboard {
   position: fixed;
@@ -9,7 +11,24 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background: linear-gradient(to right, #cdeb8e 0%, #a5c956 100%); }
+  background: linear-gradient(to right, #87e0fd 0%, #53cbf1 40%, #05abe0 100%); }
+
+.text {
+  letter-spacing: 1px;
+  padding-top: 1rem;
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8); }
+
+.author {
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  text-decoration: none; }
+
+.progress-text {
+  font-size: 12px;
+  padding-left: 1rem; }
 
 .complete {
   height: 100vh;
@@ -17,6 +36,12 @@
   align-items: center;
   justify-content: center;
   flex-direction: column; }
+
+.checkbox {
+  pointer-events: none; }
+
+#checkbox-0 {
+  margin-left: 1rem; }
 
 .reset-button {
   padding: 1rem;
@@ -26,123 +51,196 @@
   display: block;
   text-align: center; }
 
-.checkbox {
+.label {
   position: absolute;
   transition-timing-function: linear;
   animation: floatUp 25s infinite;
-  bottom: -170px; }
-  .checkbox::after {
-    content: "";
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-    display: block;
-    background: linear-gradient(to bottom, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%);
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-    z-index: 9;
-    left: -35px;
-    position: relative;
-    top: -15px; }
-  .checkbox:checked {
-    display: none; }
+  bottom: -170px;
+  display: block;
+  z-index: 10; }
 
-.checkbox:nth-child(1) {
-  animation-delay: 1s;
-  animation-duration: 17s;
-  left: 42%; }
-  .checkbox:nth-child(1)::after {
-    width: 71px;
-    height: 71px;
-    border-radius: 35.5px; }
+.bubble {
+  background: linear-gradient(to bottom, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  z-index: 11;
+  opacity: 0.8; }
 
-.checkbox:nth-child(2) {
+#checkbox-0:checked + #bubble-0 {
+  pointer-events: none; }
+  #checkbox-0:checked + #bubble-0 .bubble {
+    transition-timing-function: linear;
+    animation: pop 250ms forwards; }
+
+#bubble-0 {
   animation-delay: 1s;
-  animation-duration: 21s;
-  left: 38%; }
-  .checkbox:nth-child(2)::after {
+  animation-duration: 34s;
+  left: 58%; }
+  #bubble-0 .bubble {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px; }
+
+#checkbox-1:checked + #bubble-1 {
+  pointer-events: none; }
+  #checkbox-1:checked + #bubble-1 .bubble {
+    transition-timing-function: linear;
+    animation: pop 250ms forwards; }
+
+#bubble-1 {
+  animation-delay: 1s;
+  animation-duration: 11s;
+  left: 62%; }
+  #bubble-1 .bubble {
+    width: 161px;
+    height: 161px;
+    border-radius: 80.5px; }
+
+#checkbox-2:checked + #bubble-2 {
+  pointer-events: none; }
+  #checkbox-2:checked + #bubble-2 .bubble {
+    transition-timing-function: linear;
+    animation: pop 250ms forwards; }
+
+#bubble-2 {
+  animation-delay: 2s;
+  animation-duration: 15s;
+  left: 22%; }
+  #bubble-2 .bubble {
     width: 84px;
     height: 84px;
     border-radius: 42px; }
 
-.checkbox:nth-child(3) {
+#checkbox-3:checked + #bubble-3 {
+  pointer-events: none; }
+  #checkbox-3:checked + #bubble-3 .bubble {
+    transition-timing-function: linear;
+    animation: pop 250ms forwards; }
+
+#bubble-3 {
   animation-delay: 1s;
-  animation-duration: 38s;
-  left: 31%; }
-  .checkbox:nth-child(3)::after {
-    width: 97px;
-    height: 97px;
-    border-radius: 48.5px; }
-
-.checkbox:nth-child(4) {
-  animation-delay: 2s;
-  animation-duration: 33s;
-  left: 11%; }
-  .checkbox:nth-child(4)::after {
-    width: 95px;
-    height: 95px;
-    border-radius: 47.5px; }
-
-.checkbox:nth-child(5) {
-  animation-delay: 1s;
-  animation-duration: 27s;
-  left: 76%; }
-  .checkbox:nth-child(5)::after {
-    width: 122px;
-    height: 122px;
-    border-radius: 61px; }
-
-.checkbox:nth-child(6) {
-  animation-delay: 2s;
   animation-duration: 26s;
-  left: 66%; }
-  .checkbox:nth-child(6)::after {
-    width: 166px;
-    height: 166px;
-    border-radius: 83px; }
-
-.checkbox:nth-child(7) {
-  animation-delay: 1s;
-  animation-duration: 15s;
-  left: 49%; }
-  .checkbox:nth-child(7)::after {
-    width: 89px;
-    height: 89px;
-    border-radius: 44.5px; }
-
-.checkbox:nth-child(8) {
-  animation-delay: 2s;
-  animation-duration: 19s;
-  left: 51%; }
-  .checkbox:nth-child(8)::after {
-    width: 131px;
-    height: 131px;
-    border-radius: 65.5px; }
-
-.checkbox:nth-child(9) {
-  animation-delay: 1s;
-  animation-duration: 27s;
   left: 65%; }
-  .checkbox:nth-child(9)::after {
-    width: 135px;
-    height: 135px;
-    border-radius: 67.5px; }
+  #bubble-3 .bubble {
+    width: 104px;
+    height: 104px;
+    border-radius: 52px; }
 
-.checkbox:nth-child(10) {
+#checkbox-4:checked + #bubble-4 {
+  pointer-events: none; }
+  #checkbox-4:checked + #bubble-4 .bubble {
+    transition-timing-function: linear;
+    animation: pop 250ms forwards; }
+
+#bubble-4 {
   animation-delay: 1s;
-  animation-duration: 27s;
-  left: 52%; }
-  .checkbox:nth-child(10)::after {
-    width: 63px;
-    height: 63px;
-    border-radius: 31.5px; }
+  animation-duration: 25s;
+  left: 62%; }
+  #bubble-4 .bubble {
+    width: 66px;
+    height: 66px;
+    border-radius: 33px; }
 
-.checkbox:nth-child(1):checked + .checkbox:nth-child(2):checked + .checkbox:nth-child(3):checked + .checkbox:nth-child(4):checked + .checkbox:nth-child(5):checked + .checkbox:nth-child(6):checked + .checkbox:nth-child(7):checked + .checkbox:nth-child(8):checked + .checkbox:nth-child(9):checked + .checkbox:nth-child(10):checked + .complete {
+#checkbox-5:checked + #bubble-5 {
+  pointer-events: none; }
+  #checkbox-5:checked + #bubble-5 .bubble {
+    transition-timing-function: linear;
+    animation: pop 250ms forwards; }
+
+#bubble-5 {
+  animation-delay: 1s;
+  animation-duration: 14s;
+  left: 9%; }
+  #bubble-5 .bubble {
+    width: 128px;
+    height: 128px;
+    border-radius: 64px; }
+
+#checkbox-6:checked + #bubble-6 {
+  pointer-events: none; }
+  #checkbox-6:checked + #bubble-6 .bubble {
+    transition-timing-function: linear;
+    animation: pop 250ms forwards; }
+
+#bubble-6 {
+  animation-delay: 2s;
+  animation-duration: 25s;
+  left: 39%; }
+  #bubble-6 .bubble {
+    width: 69px;
+    height: 69px;
+    border-radius: 34.5px; }
+
+#checkbox-7:checked + #bubble-7 {
+  pointer-events: none; }
+  #checkbox-7:checked + #bubble-7 .bubble {
+    transition-timing-function: linear;
+    animation: pop 250ms forwards; }
+
+#bubble-7 {
+  animation-delay: 1s;
+  animation-duration: 17s;
+  left: 57%; }
+  #bubble-7 .bubble {
+    width: 59px;
+    height: 59px;
+    border-radius: 29.5px; }
+
+#checkbox-8:checked + #bubble-8 {
+  pointer-events: none; }
+  #checkbox-8:checked + #bubble-8 .bubble {
+    transition-timing-function: linear;
+    animation: pop 250ms forwards; }
+
+#bubble-8 {
+  animation-delay: 2s;
+  animation-duration: 35s;
+  left: 22%; }
+  #bubble-8 .bubble {
+    width: 117px;
+    height: 117px;
+    border-radius: 58.5px; }
+
+#checkbox-9:checked + #bubble-9 {
+  pointer-events: none; }
+  #checkbox-9:checked + #bubble-9 .bubble {
+    transition-timing-function: linear;
+    animation: pop 250ms forwards; }
+
+#bubble-9 {
+  animation-delay: 2s;
+  animation-duration: 37s;
+  left: 2%; }
+  #bubble-9 .bubble {
+    width: 156px;
+    height: 156px;
+    border-radius: 78px; }
+
+#checkbox-10:checked + #bubble-10 {
+  pointer-events: none; }
+  #checkbox-10:checked + #bubble-10 .bubble {
+    transition-timing-function: linear;
+    animation: pop 250ms forwards; }
+
+#bubble-10 {
+  animation-delay: 2s;
+  animation-duration: 14s;
+  left: 34%; }
+  #bubble-10 .bubble {
+    width: 57px;
+    height: 57px;
+    border-radius: 28.5px; }
+
+#checkbox-0:checked ~ #checkbox-1:checked ~ #checkbox-2:checked ~ #checkbox-3:checked ~ #checkbox-4:checked ~ #checkbox-5:checked ~ #checkbox-6:checked ~ #checkbox-7:checked ~ #checkbox-8:checked ~ #checkbox-9:checked ~ .complete {
   display: flex; }
 
 @keyframes floatUp {
   0% {
-    -webkit-transform: translateY(0);
     transform: translateY(0); }
   100% {
-    -webkit-transform: translateY(-1200px) rotate(600deg);
     transform: translateY(-1200px) rotate(600deg); } }
+
+@keyframes pop {
+  50% {
+    transform: scale(1.2); }
+  100% {
+    opacity: 0; } }
